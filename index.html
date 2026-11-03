@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sarvleen Walia | Research, machine learning, soft robotics</title>
+<meta name="description" content="Sarvleen Walia is the founder of Beyond Rote, a research community for high schoolers. Studies neurodegeneration with machine learning and built the framework for a manta ray soft robot.">
+<meta property="og:title" content="Sarvleen Walia">
+<meta property="og:description" content="Founder of Beyond Rote. Neurodegeneration, machine learning, soft robotics.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0A1CFF">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230A1CFF'/%3E%3Cpath d='M6 22 L16 8 L26 22' fill='none' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Space+Mono:wght@400;700&family=Newsreader:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #0A1CFF;
+    --deep: #0712C8;
+    --white: #FFFFFF;
+    --mist: rgba(255,255,255,.72);
+    --line: rgba(255,255,255,.28);
+    --s1: 8px; --s2: 16px; --s3: 24px; --s4: 32px; --s5: 48px; --s6: 72px; --s7: 112px;
+    --grotesk: 'Archivo', system-ui, sans-serif;
+    --serif: 'Newsreader', Georgia, serif;
+    --mono: 'Space Mono', ui-monospace, monospace;
+    --ease: cubic-bezier(.2, .8, .2, 1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--blue); color: var(--white); font: 400 17px/1.6 var(--grotesk); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  img, video, canvas { display: block; max-width: 100%; }
+  ::selection { background: var(--white); color: var(--blue); }
+  :focus-visible { outline: 2px solid var(--white); outline-offset: 4px; border-radius: 4px; }
+  .wrap { width: min(1200px, 100% - 2 * var(--s3)); margin-inline: auto; }
+  .mono { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+  /* Wireframe cursor */
+  #wire { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+  main, header, footer { position: relative; z-index: 1; }
+
+  /* Header */
+  header { position: fixed; inset: 0 0 auto 0; z-index: 40; mix-blend-mode: normal; }
+  header .wrap { height: 72px; display: flex; align-items: center; justify-content: space-between; gap: var(--s2); }
+  .name { font-family: var(--grotesk); font-stretch: 125%; font-weight: 800; font-size: 15px; }
+  nav ul { display: flex; gap: var(--s3); list-style: none; }
+  nav a { position: relative; padding: 6px 0; opacity: .8; transition: opacity .3s; }
+  nav a:hover, nav a[aria-current="true"] { opacity: 1; }
+  nav a::after { content: ''; position: absolute; left: 0; bottom: 0; height: 1px; width: 100%; background: var(--white); transform: scaleX(0); transform-origin: right; transition: transform .5s var(--ease); }
+  nav a:hover::after, nav a[aria-current="true"]::after { transform: scaleX(1); transform-origin: left; }
+  .btn { display: inline-flex; align-items: center; gap: var(--s1); min-height: 50px; padding: 0 var(--s3); border: 1px solid var(--white); border-radius: 2px; font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; transition: background .3s, color .3s, transform .4s var(--ease); }
+  .btn:hover { background: var(--white); color: var(--blue); transform: translateY(-2px); }
+  .btn.solid { background: var(--white); color: var(--blue); }
+  .btn.solid:hover { background: transparent; color: var(--white); }
+  .btn .spin { width: 12px; height: 12px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; display: none; animation: spin .8s linear infinite; }
+  .btn.loading .spin { display: inline-block; }
+  .btn.loading { pointer-events: none; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Hero */
+  .hero { position: relative; min-height: 100svh; display: grid; align-items: center; padding: 120px 0 var(--s6); }
+  .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .55; mix-blend-mode: screen; pointer-events: none; }
+  .hero-inner { position: relative; display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--s5); align-items: center; }
+  .hero h1 { font-family: var(--grotesk); font-stretch: 125%; font-weight: 800; font-size: clamp(56px, 11vw, 168px); line-height: .86; letter-spacing: -.05em; }
+  .hero h1 .row { display: block; overflow: hidden; }
+  .hero h1 .row > span { display: inline-block; transform: translateY(105%); transition: transform 1.2s var(--ease); }
+  .ready .hero h1 .row > span { transform: none; }
+  .hero h1 .row:nth-child(2) > span { transition-delay: .1s; }
+  .hero .intro { font-family: var(--serif); font-size: clamp(20px, 2.2vw, 26px); line-height: 1.4; max-width: 34ch; margin-top: var(--s4); }
+  .tags { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s3); }
+  .tags span { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .hero .actions { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s4); }
+  .hero-frame { position: relative; aspect-ratio: 1; border: 1px solid var(--line); overflow: hidden; }
+  .hero-frame video { width: 100%; height: 100%; object-fit: cover; }
+  .hero-frame .mono { position: absolute; left: var(--s2); bottom: var(--s2); background: var(--blue); padding: 4px 8px; }
+  .hero-frame .corner { position: absolute; width: 18px; height: 18px; border: 1px solid var(--white); }
+  .hero-frame .corner.a { top: 8px; left: 8px; border-right: 0; border-bottom: 0; }
+  .hero-frame .corner.b { top: 8px; right: 8px; border-left: 0; border-bottom: 0; }
+  .hero-frame .corner.c { bottom: 8px; left: 8px; border-right: 0; border-top: 0; }
+  .hero-frame .corner.d { bottom: 8px; right: 8px; border-left: 0; border-top: 0; }
+
+  /* Sections */
+  section.block { padding: var(--s7) 0; border-top: 1px solid var(--line); position: relative; }
+  .label { display: flex; align-items: center; gap: var(--s2); margin-bottom: var(--s4); }
+  .label .mono { opacity: .8; }
+  .label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+  h2 { font-family: var(--grotesk); font-stretch: 125%; font-weight: 800; font-size: clamp(40px, 6vw, 92px); line-height: .92; letter-spacing: -.045em; }
+  .lead { font-family: var(--serif); font-size: clamp(20px, 2.2vw, 28px); line-height: 1.45; max-width: 52ch; }
+  .body p { color: var(--mist); font-family: var(--serif); font-size: 19px; line-height: 1.6; max-width: 64ch; }
+  .body p + p { margin-top: var(--s3); }
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 1s var(--ease), transform 1.1s var(--ease); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* Stats */
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
+  .stat { padding: var(--s4) var(--s3) var(--s4) 0; border-bottom: 1px solid var(--line); transition: background .4s var(--ease); }
+  .stat:hover { background: rgba(255,255,255,.06); }
+  .stat .num { font-family: var(--grotesk); font-stretch: 125%; font-weight: 800; font-size: clamp(52px, 6vw, 92px); line-height: .9; letter-spacing: -.05em; font-variant-numeric: tabular-nums; }
+  .stat p { font-family: var(--serif); color: var(--mist); margin-top: var(--s2); font-size: 18px; }
+  .gdp { display: grid; grid-template-columns: auto 1fr; gap: var(--s4); align-items: start; margin-top: var(--s5); }
+  .gdp .pct { font-family: var(--grotesk); font-stretch: 125%; font-weight: 800; font-size: clamp(64px, 8vw, 120px); letter-spacing: -.05em; line-height: .9; }
+  .gdp p { font-family: var(--serif); font-size: 20px; color: var(--mist); max-width: 52ch; }
+  .gdp a { color: var(--white); border-bottom: 1px solid var(--white); }
+
+  /* Sessions tabs */
+  .question { font-family: var(--serif); font-style: italic; font-size: clamp(22px, 2.6vw, 32px); line-height: 1.4; max-width: 48ch; margin-bottom: var(--s5); }
+  .tabs { display: flex; flex-wrap: wrap; gap: var(--s1); margin-bottom: var(--s4); }
+  .tab { padding: 12px 16px; font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; border: 1px solid var(--line); transition: background .3s, color .3s, border-color .3s; }
+  .tab:hover { border-color: var(--white); }
+  .tab[aria-selected="true"] { background: var(--white); color: var(--blue); border-color: var(--white); }
+  .panel { border-top: 1px solid var(--line); padding-top: var(--s4); min-height: 240px; }
+  .panel[hidden] { display: none; }
+  .panel h3 { font-family: var(--grotesk); font-stretch: 112%; font-weight: 700; font-size: clamp(24px, 3vw, 36px); line-height: 1.1; letter-spacing: -.02em; }
+  .panel p { font-family: var(--serif); color: var(--mist); font-size: 19px; margin-top: var(--s3); max-width: 62ch; }
+  .panel blockquote { margin-top: var(--s4); padding-left: var(--s3); border-left: 2px solid var(--white); font-family: var(--serif); font-size: 19px; }
+  .panel blockquote b { font-family: var(--mono); font-weight: 400; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; display: block; margin-bottom: 6px; }
+  .skel { display: none; }
+  .skel.on { display: block; }
+  .sk { height: 12px; background: linear-gradient(90deg, rgba(255,255,255,.12) 25%, rgba(255,255,255,.3) 50%, rgba(255,255,255,.12) 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite linear; margin-bottom: var(--s2); }
+  @keyframes shimmer { to { background-position: -200% 0; } }
+
+  /* Work cards */
+  .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .card { background: var(--blue); padding: var(--s4); min-height: 280px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; transition: background .5s var(--ease); }
+  .card:hover { background: var(--deep); }
+  .card .tag { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: .1em; opacity: .75; }
+  .card h3 { font-family: var(--grotesk); font-stretch: 112%; font-weight: 700; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.1; margin-top: var(--s3); }
+  .card p { font-family: var(--serif); color: var(--mist); font-size: 18px; margin-top: var(--s2); }
+  .card .draw { margin-top: var(--s3); height: 40px; width: 100%; }
+  .card .draw path { fill: none; stroke: var(--white); stroke-width: 1; stroke-dasharray: 600; stroke-dashoffset: 600; transition: stroke-dashoffset 2s var(--ease); }
+  .card:hover .draw path, .card.in .draw path { stroke-dashoffset: 0; }
+
+  /* Lists */
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s5); }
+  .two h4 { font-family: var(--mono); font-weight: 400; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: var(--s2); }
+  .two ul { list-style: none; border-top: 1px solid var(--line); }
+  .two li { padding: 14px 0; border-bottom: 1px solid var(--line); font-family: var(--serif); font-size: 19px; color: var(--mist); transition: padding .5s var(--ease), color .3s; }
+  .two li:hover { padding-left: 12px; color: var(--white); }
+
+  /* Contact */
+  .contact { padding: var(--s7) 0; }
+  .contact .big { font-family: var(--grotesk); font-stretch: 125%; font-weight: 800; font-size: clamp(56px, 12vw, 180px); line-height: .85; letter-spacing: -.06em; }
+  .contact .big a { border-bottom: 3px solid var(--white); }
+  .contact .actions { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s5); }
+  footer { padding: var(--s5) 0; border-top: 1px solid var(--line); font-size: 14px; }
+  footer .row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s2); }
+
+  @media (max-width: 900px) {
+    nav { display: none; }
+    .hero-inner, .gdp, .two, .cards { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: 1fr; }
+    .card { min-height: 220px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    .reveal { opacity: 1; transform: none; }
+    .hero h1 .row > span { transform: none; }
+  }
+</style>
+</head>
+<body>
+<canvas id="wire" aria-hidden="true"></canvas>
+
+<header>
+  <div class="wrap">
+    <a href="#top" class="name">Sarvleen Walia</a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#built">Built</a></li>
+        <li><a href="#building">Building</a></li>
+        <li><a href="#cornershop">Cornershop</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" aria-label="Introduction">
+    <video class="hero-video" id="heroVideo" src="/_blob/c07ef8f6cb311d1da7c18179a7fcb03e" autoplay muted loop playsinline aria-hidden="true"></video>
+    <div class="wrap hero-inner">
+      <div>
+        <h1 aria-label="Sarvleen Walia">
+          <span class="row" aria-hidden="true"><span>Sarvleen</span></span>
+          <span class="row" aria-hidden="true"><span>Walia</span></span>
+        </h1>
+        <p class="intro">Founder of Beyond Rote, a research community for high schoolers. I study neurodegeneration with machine learning, led an unfunded iGEM team, and built the framework for a manta ray soft robot.</p>
+        <div class="tags mono"><span>From Delhi, India</span><span>Neuroscience</span><span>Machine learning</span><span>Soft robotics</span></div>
+        <div class="actions">
+          <a class="btn solid magnet" href="#built">See the work</a>
+          <a class="btn" href="#contact">Get in touch</a>
+        </div>
+      </div>
+      <figure class="hero-frame" aria-label="Intro video">
+        <span class="corner a"></span><span class="corner b"></span><span class="corner c"></span><span class="corner d"></span>
+        <video src="/_blob/c07ef8f6cb311d1da7c18179a7fcb03e" autoplay muted loop playsinline aria-label="A short video from Sarvleen"></video>
+        <figcaption class="mono">Intro / 00:60</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="block wrap" id="about" aria-labelledby="about-h">
+    <div class="label reveal"><span class="mono">01 / In my own words</span></div>
+    <div class="reveal">
+      <h2 id="about-h">I started Beyond Rote so students could do real research</h2>
+    </div>
+    <div class="body reveal" style="margin-top:var(--s5)">
+      <p>Beyond Rote started from frustration. I hated rote learning, and I could see how little research reaches school students in India. So I started the thing I wished existed: a research-based community for high schoolers.</p>
+      <p>I led a team of 6+, and every one of us came from a tier 3 city. We partner with professors from leading research institutes and with schools, so students meet real research early. Beyond Rote grew to over 2,000 members.</p>
+      <p>Beyond Rote treats students as early researchers rather than recipients of facts. Sessions follow four commitments, and every session is written up as an institutional memory record so the thinking outlasts the people in the room.</p>
+    </div>
+  </section>
+
+  <section class="block wrap" aria-labelledby="stats-h">
+    <div class="label reveal"><span class="mono" id="stats-h">02 / By the numbers</span></div>
+    <div class="stats reveal">
+      <div class="stat"><div class="num"><span data-count="6">0</span>+</div><p>people on the team I led</p></div>
+      <div class="stat"><div class="num"><span data-count="5">0</span></div><p>professors from leading research institutes</p></div>
+      <div class="stat"><div class="num"><span data-count="200">0</span>+</div><p>students reached</p></div>
+      <div class="stat"><div class="num"><span data-count="4">0</span>+</div><p>schools collaborated with</p></div>
+      <div class="stat"><div class="num"><span data-count="1">0</span></div><p>Delhi University college</p></div>
+    </div>
+    <div class="gdp reveal">
+      <div class="pct">0.64%</div>
+      <p>of GDP is what India spends on research and development, according to the Economic Survey 2025-26. The US, China and Israel sit between 2.5% and 5%. Beyond Rote exists because research barely reaches students here. <a href="https://www.forbesindia.com/" target="_blank" rel="noopener">Source: Forbes India</a></p>
+    </div>
+  </section>
+
+  <section class="block wrap" id="research" aria-labelledby="research-h">
+    <div class="label reveal"><span class="mono" id="research-h">03 / One question across eight fields</span></div>
+    <p class="question reveal">How do complex systems retain meaningful information despite noise, damage, and uncertainty, and what does this imply about storage, structure, and reconstruction?</p>
+    <div class="tabs" role="tablist" aria-label="Research sessions">
+      <button class="tab" role="tab" id="t0" aria-selected="true" aria-controls="p0">Memory and the brain</button>
+      <button class="tab" role="tab" id="t1" aria-selected="false" aria-controls="p1" tabindex="-1">Supersonic jets</button>
+      <button class="tab" role="tab" id="t2" aria-selected="false" aria-controls="p2" tabindex="-1">Small-world networks</button>
+      <button class="tab" role="tab" id="t3" aria-selected="false" aria-controls="p3" tabindex="-1">Design cognition</button>
+    </div>
+    <div class="skel on" id="skel" aria-hidden="true"><div class="sk" style="width:60%;height:24px"></div><div class="sk" style="width:90%"></div><div class="sk" style="width:70%"></div></div>
+    <div class="panel" role="tabpanel" id="p0" aria-labelledby="t0" hidden>
+      <h3>Memory is rebuilt, not replayed</h3>
+      <p>Localized damage weakens retrieval, not the existence of memories. Loss tracks how much cortex is damaged more than where (the Principle of Mass Action). The holographic model fits this, but no biological mechanism has been found, and modern neural networks explain distributed processing without it.</p>
+      <blockquote><b>Open question</b>If memory is physical but non-localized, what exact physical quantity or transformation stores it?</blockquote>
+    </div>
+    <div class="panel" role="tabpanel" id="p1" aria-labelledby="t1" hidden>
+      <h3>Small geometry changes reshape the whole flow</h3>
+      <p>Shocks form only where flow exceeds the speed of sound. Comparing underexpanded and overexpanded nozzles shows how sensitive these structures are to design. Chevrons and microjets cut low-frequency jet noise, with a trade-off in high frequencies.</p>
+    </div>
+    <div class="panel" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
+      <h3>Six degrees is an average, not a guarantee</h3>
+      <p>Milgram's letter experiment found surprisingly short chains between strangers. Bridging ties keep the network connected, and socioeconomic stratification did not significantly lengthen the average path.</p>
+    </div>
+    <div class="panel" role="tabpanel" id="p3" aria-labelledby="t3" hidden>
+      <h3>Design is adaptive thinking under uncertainty</h3>
+      <p>Design differs from planning and from art. Its goals are often unclear at the start and evolve during the work. Professional design is deliberate, and it is reflective rather than instinctive.</p>
+    </div>
+  </section>
+
+  <section class="block wrap" aria-labelledby="proposal-h">
+    <div class="label reveal"><span class="mono" id="proposal-h">04 / Proposed framework</span></div>
+    <div class="two reveal">
+      <div>
+        <h2 style="font-size:clamp(34px,4.6vw,68px)">Why do dopaminergic neurons die, and can we see it coming?</h2>
+        <p class="body" style="margin-top:var(--s4)"><span style="font-family:var(--serif);color:var(--mist);font-size:19px">Parkinson's disease destroys dopaminergic neurons. I study that degeneration and the therapeutic approaches that follow from it, and I explore AI and machine-learning models that predict how stem cells differentiate.</span></p>
+      </div>
+      <div>
+        <h4>Work in progress</h4>
+        <ul>
+          <li>Dopaminergic neuron degeneration and potential therapies</li>
+          <li>Machine-learning models for stem cell differentiation outcomes</li>
+          <li>Literature reviews and data analysis that support ongoing experiments</li>
+          <li>Work with mentors and online research communities</li>
+        </ul>
+      </div>
+    </div>
+    <div class="body reveal" style="margin-top:var(--s5)">
+      <p><strong style="font-weight:600">Machine-Learning Prediction of Stem-Cell Differentiation Fate Using Single-Cell RNA-Seq Data</strong> (with application to Parkinson's dopaminergic neurons). Written under Dr Sujata Mohanty. The field lacks standard, scalable pipelines for finding subtle early-stage signals in public, mixed-quality datasets. This paper proposes one that is accessible, reproducible and computationally light. It describes the planned method and does not report results yet.</p>
+    </div>
+    <div class="two reveal" style="margin-top:var(--s5)">
+      <ul>
+        <li>1. Curate Parkinson's and healthy-control iPSC-derived neuron scRNA-seq data from GEO and ArrayExpress</li>
+        <li>2. Normalize and reduce dimensions</li>
+        <li>3. Cluster cells without labels</li>
+        <li>4. Test differential gene expression</li>
+        <li>5. Map early dysregulation in mitochondrial, lysosomal and proteostasis pathways</li>
+      </ul>
+      <div class="body" style="align-self:end"><p>Goal: early molecular signatures that inform regenerative-therapy strategies and pre-symptomatic interventions.</p></div>
+    </div>
+  </section>
+
+  <section class="block wrap" id="building" aria-labelledby="building-h">
+    <div class="label reveal"><span class="mono" id="building-h">Currently building / Cornershop</span></div>
+    <div class="reveal">
+      <h2 style="font-size:clamp(40px,6vw,92px)">A corner of the internet for creative people.</h2>
+      <p class="lead" style="margin-top:var(--s4)">Cornershop is an app that lets like-minded creative people connect based on shared interests. I'm developing the first MVP now.</p>
+    </div>
+    <div class="stats reveal" style="margin-top:var(--s5)">
+      <div class="stat"><div class="num"><span data-count="1250">0</span></div><p>people on the waitlist</p></div>
+    </div>
+    <div class="body reveal" style="margin-top:var(--s5)">
+      <p>Current technology was not built for artistic audiences. Most platforms optimise for attention or for work, not for finding the people who share your taste. People need their own corner of the internet, and that is why I'm building Cornershop.</p>
+      <p>The name is inspired by the British band Cornershop.</p>
+    </div>
+  </section>
+
+  <section class="block wrap" id="cornershop" aria-labelledby="cornershop-h">
+    <div class="label reveal"><span class="mono" id="cornershop-h">Cornershop Adda / Founders Meet</span></div>
+    <div class="reveal">
+      <h2 style="font-size:clamp(40px,6vw,92px)">Find your first believer.</h2>
+      <p class="lead" style="margin-top:var(--s4)">Cornershop Adda is the first event in Delhi built for anyone who is building something or curious about starting. I hosted its first Founders Meet at 17, because finding an accessible founder community in Delhi felt harder than it should.</p>
+    </div>
+    <dl class="two reveal" style="margin-top:var(--s5);display:grid;grid-template-columns:1fr 1fr;gap:var(--s4)">
+      <div><h4>What</h4><p class="body" style="font-family:var(--serif);color:var(--mist);font-size:19px">Cornershop Adda, Founders Meet</p></div>
+      <div><h4>When</h4><p class="body" style="font-family:var(--serif);color:var(--mist);font-size:19px">31 October 2026, 3&ndash;6 PM IST</p></div>
+      <div><h4>Where</h4><p class="body" style="font-family:var(--serif);color:var(--mist);font-size:19px">First Coffee, Connaught Place, New Delhi</p></div>
+      <div><h4>Event listing</h4><p class="body" style="font-family:var(--serif);color:var(--mist);font-size:19px"><a href="https://luma.com/hhba6fed" target="_blank" rel="noopener" style="border-bottom:1px solid var(--white)">luma.com/hhba6fed</a></p></div>
+    </dl>
+    <div class="stats reveal" style="margin-top:var(--s5)">
+      <div class="stat"><div class="num"><span data-count="25">0</span><em>+</em></div><p>people showed up</p><small style="font-family:var(--mono);font-size:12px;opacity:.8;text-transform:uppercase;letter-spacing:.04em">Organiser-reported turnout</small></div>
+      <div class="stat"><div class="num"><span data-count="62">0</span></div><p>public Luma listing views</p><small style="font-family:var(--mono);font-size:12px;opacity:.8;text-transform:uppercase;letter-spacing:.04em">Observed during preparation</small></div><div class="stat"><div class="num"><span data-count="2000" data-from="200">200</span></div><p>founders we are building toward</p><small style="font-family:var(--mono);font-size:12px;opacity:.8;text-transform:uppercase;letter-spacing:.04em">A goal, not a count</small></div>
+      
+    </div>
+    <div class="body reveal" style="margin-top:var(--s5)">
+      <p>There is no reality in this world where you don&rsquo;t win. That is the opening line of Cornershop Adda, an encouragement rather than an attendee testimonial.</p>
+      <p>Cornershop is the bigger idea: help curious people find others who share their interests, then turn that connection into a real plan to meet. The app is at the MVP stage. The first Adda was a beginning.</p>
+    </div>
+  </section>
+
+  <section class="block wrap" id="built" aria-labelledby="built-h">
+    <div class="label reveal"><span class="mono" id="built-h">05 / What I've built</span></div>
+    <div class="cards">
+      <article class="card reveal">
+        <div>
+          <span class="tag">Soft robotics</span>
+          <h3>Manta ray soft robot</h3>
+          <p>I built the framework for a manta ray soft robot. Soft robots swap rigid joints for flexible bodies, and a manta ray is a good model because it swims by sending a wave along its wings.</p>
+        </div>
+        <svg class="draw" viewBox="0 0 400 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30 C 60 0, 100 40, 160 20 S 260 0, 320 24 S 380 10, 400 18"/></svg>
+      </article>
+      <article class="card reveal">
+        <div>
+          <span class="tag">Synthetic biology</span>
+          <h3>iGEM team lead</h3>
+          <p>I led an iGEM team, the international synthetic biology competition. We had no funding, and we were the only independent high school team in the country.</p>
+        </div>
+        <svg class="draw" viewBox="0 0 400 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20 C 50 40, 90 0, 140 20 S 230 40, 290 18 S 360 4, 400 22"/></svg>
+      </article>
+    </div>
+  </section>
+
+  <section class="block wrap" aria-labelledby="morpheus-h">
+    <div class="label reveal"><span class="mono">06 / Shelved</span></div>
+    <div class="reveal">
+      <h2 id="morpheus-h" style="font-size:clamp(40px,5vw,76px)">Morpheus, AI infrastructure for predictive science</h2>
+      <p class="lead" style="margin-top:var(--s4)">Scientific experimentation is slow, expensive and unpredictable. Morpheus was my attempt to forecast an experiment's outcome before anyone runs it.</p>
+    </div>
+    <div class="two reveal" style="margin-top:var(--s5)">
+      <div>
+        <h4>The problem</h4>
+        <ul>
+          <li>Researchers rely on trial-and-error workflows</li>
+          <li>Outcomes are hard to forecast before lab work starts</li>
+          <li>No unified predictive engine exists for laboratory experiments</li>
+        </ul>
+      </div>
+      <div>
+        <h4>The solution</h4>
+        <ul>
+          <li>A predictive AI engine that models experimental variables and forecasts likely outcomes before physical execution</li>
+          <li>Works across enzyme-based and non-enzyme systems</li>
+          <li>Goal: fewer failed experiments and faster discovery cycles</li>
+        </ul>
+      </div>
+    </div>
+    <div class="two reveal" style="margin-top:var(--s5)">
+      <div>
+        <h4>Business model</h4>
+        <ul>
+          <li>Subscriptions for labs and research institutions</li>
+          <li>Enterprise licensing for pharma and biotech firms</li>
+          <li>Later, API access for research software platforms</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Vision</h4>
+        <ul>
+          <li>Become the AI operating layer for scientific experimentation</li>
+          <li>Move research from trial and error to predictive engineering</li>
+        </ul>
+      </div>
+    </div>
+    <p class="lead reveal" style="margin-top:var(--s5);font-style:italic">A team in China built it first, so I shelved it. My team slide read: "Focused on AI-driven research infrastructure and making research accessible for all." That is still what I want to work on.</p>
+  </section>
+
+  <section class="block wrap" aria-labelledby="can-h">
+    <div class="label reveal"><span class="mono" id="can-h">07 / What I can do</span></div>
+    <div class="two reveal">
+      <div>
+        <h4>Research</h4>
+        <ul>
+          <li>Literature review and research writing</li>
+          <li>Data analysis for ongoing experiments</li>
+          <li>Single-cell pipeline design: normalization, clustering, differential expression</li>
+          <li>Cross-domain synthesis</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Machine learning</h4>
+        <ul>
+          <li>Feature extraction from single-cell RNA-seq data</li>
+          <li>Predicting stem cell differentiation outcomes</li>
+          <li>Predictive models for laboratory experiments</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact wrap" id="contact" aria-labelledby="contact-h">
+    <div class="label reveal"><span class="mono" id="contact-h">08 / Contact</span></div>
+    <p class="big reveal">Let's build the next thing.</p>
+    <div class="actions reveal">
+      <button class="btn solid magnet" id="copyBtn" type="button"><span class="spin" aria-hidden="true"></span><span id="copyLabel">Copy contact</span></button>
+      <a class="btn" href="#top">Back to the top</a>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <div class="row">
+    <span>Sarvleen Walia. Delhi, India.</span>
+    <span class="mono">Beyond Rote / Inquiry Series</span>
+  </div>
+</footer>
+
+<script>
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  requestAnimationFrame(() => document.body.classList.add('ready'));
+
+  // Blue wireframe: nodes with coordinate labels, curves that draw between them and the pointer
+  const cv = document.getElementById('wire');
+  const ctx = cv.getContext('2d');
+  let W, H, nodes = [], mouse = { x: -999, y: -999 }, trail = [];
+  function resize() {
+    W = cv.width = innerWidth * devicePixelRatio;
+    H = cv.height = innerHeight * devicePixelRatio;
+    cv.style.width = innerWidth + 'px'; cv.style.height = innerHeight + 'px';
+    nodes = [];
+    const count = Math.round(innerWidth / 110);
+    for (let i = 0; i < count; i++) {
+      nodes.push({ x: Math.random() * innerWidth, y: Math.random() * innerHeight, vx: (Math.random() - .5) * .25, vy: (Math.random() - .5) * .25, kind: i % 3 });
+    }
+  }
+  function drawNode(n, a) {
+    const x = n.x, y = n.y;
+    ctx.strokeStyle = `rgba(255,255,255,${a})`;
+    ctx.fillStyle = `rgba(255,255,255,${a})`;
+    ctx.lineWidth = 1;
+    if (n.kind === 0) { ctx.strokeRect(x - 4, y - 4, 8, 8); }
+    else if (n.kind === 1) { ctx.beginPath(); ctx.arc(x, y, 4, 0, Math.PI * 2); ctx.stroke(); }
+    else { ctx.beginPath(); ctx.moveTo(x, y - 5); ctx.lineTo(x + 5, y + 4); ctx.lineTo(x - 5, y + 4); ctx.closePath(); ctx.stroke(); }
+    ctx.font = '10px Space Mono, monospace';
+    ctx.fillText(Math.round(x) + ',' + Math.round(y), x + 9, y - 6);
+  }
+  function frame(t) {
+    ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    if (!reduce) for (const n of nodes) {
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < 0 || n.x > innerWidth) n.vx *= -1;
+      if (n.y < 0 || n.y > innerHeight) n.vy *= -1;
+    }
+    // Pointer trail
+    trail.push({ x: mouse.x, y: mouse.y, t });
+    trail = trail.filter(p => t - p.t < 900);
+    if (trail.length > 1) {
+      ctx.strokeStyle = 'rgba(255,255,255,.55)';
+      ctx.beginPath();
+      ctx.moveTo(trail[0].x, trail[0].y);
+      for (let i = 1; i < trail.length - 1; i++) {
+        const mx = (trail[i].x + trail[i + 1].x) / 2, my = (trail[i].y + trail[i + 1].y) / 2;
+        ctx.quadraticCurveTo(trail[i].x, trail[i].y, mx, my);
+      }
+      ctx.stroke();
+    }
+    // Node links: draw a curve to nearby nodes
+    for (let i = 0; i < nodes.length; i++) {
+      const a = nodes[i];
+      for (let j = i + 1; j < nodes.length; j++) {
+        const b = nodes[j];
+        const d = Math.hypot(a.x - b.x, a.y - b.y);
+        if (d < 240) {
+          ctx.strokeStyle = `rgba(255,255,255,${(1 - d / 240) * .3})`;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.quadraticCurveTo((a.x + b.x) / 2 + 30, (a.y + b.y) / 2 - 30, b.x, b.y);
+          ctx.stroke();
+        }
+      }
+      drawNode(a, .85);
+    }
+    // Pointer link
+    for (const n of nodes) {
+      const d = Math.hypot(n.x - mouse.x, n.y - mouse.y);
+      if (d < 260) {
+        ctx.strokeStyle = `rgba(255,255,255,${(1 - d / 260) * .8})`;
+        ctx.beginPath(); ctx.moveTo(n.x, n.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke();
+      }
+    }
+    if (!reduce) requestAnimationFrame(frame);
+  }
+  resize();
+  addEventListener('resize', resize);
+  addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
+  requestAnimationFrame(frame);
+
+  // Research tabs with a short loading state
+  const tabs = [...document.querySelectorAll('[role="tab"]')];
+  const skel = document.getElementById('skel');
+  function selectTab(i, focus) {
+    tabs.forEach((t, j) => {
+      const on = i === j;
+      t.setAttribute('aria-selected', on);
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById('p' + j).hidden = true;
+    });
+    skel.classList.add('on');
+    setTimeout(() => {
+      skel.classList.remove('on');
+      document.getElementById('p' + i).hidden = false;
+    }, 380);
+    if (focus) tabs[i].focus();
+  }
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => selectTab(i));
+    t.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); selectTab((i + 1) % tabs.length, true); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); selectTab((i - 1 + tabs.length) % tabs.length, true); }
+    });
+  });
+  selectTab(0);
+
+  // Reveals and count-up
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('in');
+      e.target.querySelectorAll('[data-count]').forEach(countUp);
+      io.unobserve(e.target);
+    });
+  }, { threshold: .15 });
+  document.querySelectorAll('.reveal, .card').forEach(el => io.observe(el));
+  function countUp(el) {
+    const target = +el.dataset.count, from = +(el.dataset.from || 0), start = performance.now();
+    const step = now => {
+      const p = Math.min((now - start) / 1400, 1);
+      el.textContent = Math.round(from + (target - from) * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+  document.querySelectorAll('.gdp .pct').forEach(el => io.observe(el));
+
+  // Active nav
+  const links = [...document.querySelectorAll('nav a')];
+  const targets = links.map(a => document.querySelector(a.getAttribute('href')));
+  addEventListener('scroll', () => {
+    let current = -1;
+    targets.forEach((t, i) => { if (t && t.getBoundingClientRect().top < innerHeight * .4) current = i; });
+    links.forEach((a, i) => a.setAttribute('aria-current', i === current ? 'true' : 'false'));
+  }, { passive: true });
+
+  // Magnetic buttons
+  document.querySelectorAll('.magnet').forEach(el => {
+    el.addEventListener('pointermove', e => {
+      const r = el.getBoundingClientRect();
+      el.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * .2}px, ${(e.clientY - r.top - r.height / 2) * .25}px)`;
+    });
+    el.addEventListener('pointerleave', () => { el.style.transform = ''; });
+  });
+
+  // CV request and copy contact, each with a loading state
+  function withLoading(btn, label, action, done) {
+    btn.classList.add('loading');
+    setTimeout(async () => {
+      try { await action(); label.textContent = done; }
+      catch (err) { label.textContent = 'Unavailable right now'; }
+      btn.classList.remove('loading');
+    }, 600);
+  }
+  const copyBtn = document.getElementById('copyBtn');
+  const copyLabel = document.getElementById('copyLabel');
+  copyBtn.addEventListener('click', () => withLoading(copyBtn, copyLabel, () => navigator.clipboard.writeText('Sarvleen Walia, Delhi, India'), 'Copied'));
+
+  // Card line-drawings draw in when their card is on screen
+  document.querySelectorAll('.card').forEach(c => io.observe(c));
+</script>
+</body>
+</html>
