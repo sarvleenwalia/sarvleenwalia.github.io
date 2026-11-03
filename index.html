@@ -221,7 +221,7 @@
     <div class="stats reveal">
       <div class="stat"><div class="num"><span data-count="6">0</span>+</div><p>people on the team I led</p></div>
       <div class="stat"><div class="num"><span data-count="5">0</span></div><p>professors from leading research institutes</p></div>
-      <div class="stat"><div class="num"><span data-count="200">0</span>+</div><p>students reached</p></div>
+      <div class="stat"><div class="num"><span data-count="2000">0</span>+</div><p>students reached</p></div>
       <div class="stat"><div class="num"><span data-count="4">0</span>+</div><p>schools collaborated with</p></div>
       <div class="stat"><div class="num"><span data-count="1">0</span></div><p>Delhi University college</p></div>
     </div>
@@ -423,6 +423,7 @@
     <div class="label reveal"><span class="mono" id="contact-h">08 / Contact</span></div>
     <p class="big reveal">Let's build the next thing.</p>
     <div class="actions reveal">
+      <a class="btn" href="mailto:sarvleenwalia@gmail.com">sarvleenwalia@gmail.com</a>
       <button class="btn solid magnet" id="copyBtn" type="button"><span class="spin" aria-hidden="true"></span><span id="copyLabel">Copy contact</span></button>
       <a class="btn" href="#top">Back to the top</a>
     </div>
@@ -593,7 +594,7 @@
   }
   const copyBtn = document.getElementById('copyBtn');
   const copyLabel = document.getElementById('copyLabel');
-  copyBtn.addEventListener('click', () => withLoading(copyBtn, copyLabel, () => navigator.clipboard.writeText('Sarvleen Walia, Delhi, India'), 'Copied'));
+  copyBtn.addEventListener('click', () => withLoading(copyBtn, copyLabel, () => navigator.clipboard.writeText('sarvleenwalia@gmail.com'), 'Copied'));
 
   // Card line-drawings draw in when their card is on screen
   document.querySelectorAll('.card').forEach(c => io.observe(c));
