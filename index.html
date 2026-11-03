@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sarvleen Walia | Research, machine learning, soft robotics</title>
-<meta name="description" content="Sarvleen Walia is the founder of Beyond Rote, a research community for high schoolers. Studies neurodegeneration with machine learning and built the framework for a manta ray soft robot.">
+<meta name="description" content="Sarvleen Walia: started Beyond Rote, hosted Cornershop Adda in Delhi, and is building Cornershop. Community projects, research proposals, and work in progress.">
 <meta property="og:title" content="Sarvleen Walia">
-<meta property="og:description" content="Founder of Beyond Rote. Neurodegeneration, machine learning, soft robotics.">
+<meta property="og:description" content="Beyond Rote, Cornershop Adda, and experiments in research and community building.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#0A1CFF">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230A1CFF'/%3E%3Cpath d='M6 22 L16 8 L26 22' fill='none' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E">
@@ -159,6 +159,53 @@
     .reveal { opacity: 1; transform: none; }
     .hero h1 .row > span { transform: none; }
   }
+  /* Reading and evidence layout */
+  header { background: rgba(10,28,255,.96); border-bottom: 1px solid var(--line); }
+  section[id] { scroll-margin-top: 96px; }
+  #wire { opacity: .15; }
+  .hero-inner { grid-template-columns: minmax(0,1.5fr) minmax(270px,1fr); }
+  .hero h1 { font-size: clamp(56px,9vw,132px); }
+  .eyebrow { margin-bottom: 28px; opacity: .8; }
+  .hero .intro { max-width: 38ch; font-size: clamp(21px,2vw,26px); }
+  .hero-summary { margin-top: 22px; font-size: 20px; max-width: 46ch; color: var(--mist); }
+  .selected-work { border: 1px solid var(--line); padding: 28px; }
+  .selected-work > a { display: block; padding: 24px 0; border-top: 1px solid var(--line); margin-top: 20px; }
+  .selected-work h3 { font-size: 28px; line-height: 1.1; margin: 12px 0; }
+  .selected-work p { color: var(--mist); font-family: var(--serif); font-size: 18px; margin-bottom: 14px; }
+  .selected-work > a:hover h3 { text-decoration: underline; text-underline-offset: 5px; }
+  .section-copy { margin-top: 36px; }
+  .two h3 { font-size: 24px; line-height: 1.2; margin-bottom: 20px; }
+  .note { font-size: 14px; color: var(--mist); max-width: 75ch; margin-top: 18px; }
+  .archive { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 22px 0; }
+  .archive summary { cursor: pointer; font-size: 20px; }
+  .archive .body { margin-top: 20px; }
+  .contact .big { font-size: clamp(46px,8vw,112px); line-height: .98; max-width: 14ch; }
+  .btn { overflow-wrap: anywhere; max-width: 100%; }
+  @media (max-width: 900px) { .hero-inner { grid-template-columns: 1fr; } .hero { padding-top: 110px; } .selected-work { margin-top: 12px; } }
+  @media (max-width: 480px) { .wrap { width: calc(100% - 32px); } h2 { font-size: 40px; } .btn { padding: 12px 16px; font-size: 11px; } .selected-work { padding: 20px; } section.block, .contact { padding: 64px 0; } }
+  .hero { min-height: 100svh; padding: 108px 0 48px; }
+  .hero h1 { font-size: clamp(56px,7.3vw,108px); }
+  .eyebrow { margin-bottom: 24px; }
+  .hero .intro { font-size: 22px; margin-top: 26px; }
+  .hero-summary { font-size: 18px; margin-top: 18px; }
+  .hero .actions { margin-top: 26px; }
+  .selected-work { padding: 22px; }
+  .selected-work > .mono { font-family: var(--mono); font-size: 12px; }
+  .selected-work > a { padding: 16px 0; margin-top: 14px; }
+  .selected-work h3 { font-size: 26px; margin: 9px 0; }
+  .selected-work p { font-size: 17px; margin-bottom: 10px; }
+  .selected-work > a { padding: 14px 0; margin-top: 12px; }
+  .selected-work h3 { font-size: 23px; margin: 8px 0; }
+  .selected-work a p { font-size: 16px; line-height: 1.45; margin-bottom: 0; }
+  .hero .intro { max-width: 42ch; font-size: 21px; }
+  .hero h1 { font-size: clamp(56px,6.8vw,100px); }
+  @media (max-width: 900px) {
+    header .wrap { height: auto; min-height: 76px; padding: 12px 0; flex-wrap: wrap; gap: 8px; }
+    nav { display: block; width: 100%; }
+    nav ul { gap: 18px; overflow-x: auto; white-space: nowrap; padding-bottom: 4px; font-size: 12px; }
+    .hero { padding-top: 130px; }
+    section[id] { scroll-margin-top: 112px; }
+  }
 </style>
 </head>
 <body>
@@ -167,282 +214,59 @@
 <header>
   <div class="wrap">
     <a href="#top" class="name">Sarvleen Walia</a>
-    <nav aria-label="Primary">
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#research">Research</a></li>
-        <li><a href="#built">Built</a></li>
-        <li><a href="#building">Building</a></li>
-        <li><a href="#cornershop">Cornershop</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+    <nav aria-label="Primary"><ul><li><a href="#about">Beyond Rote</a></li><li><a href="#cornershop">Founders Meet</a></li><li><a href="#building">Cornershop</a></li><li><a href="#research">Research</a></li><li><a href="#contact">Contact</a></li></ul></nav>
   </div>
 </header>
 
 <main id="top">
-  <section class="hero" aria-label="Introduction">
-    <video class="hero-video" id="heroVideo" src="/_blob/c07ef8f6cb311d1da7c18179a7fcb03e" autoplay muted loop playsinline aria-hidden="true"></video>
-    <div class="wrap hero-inner">
-      <div>
-        <h1 aria-label="Sarvleen Walia">
-          <span class="row" aria-hidden="true"><span>Sarvleen</span></span>
-          <span class="row" aria-hidden="true"><span>Walia</span></span>
-        </h1>
-        <p class="intro">I do crazy stuff. Sometimes it works; sometimes it doesn&rsquo;t. When it doesn&rsquo;t, I often learn more than when it does. I started Beyond Rote, hosted a Founders Meet, and am building Cornershop. I explore neuroscience, machine learning, and soft robotics.</p>
-        <div class="tags mono"><span>From Delhi, India</span><span>Neuroscience</span><span>Machine learning</span><span>Soft robotics</span></div>
-        <div class="actions">
-          <a class="btn solid magnet" href="#built">See the work</a>
-          <a class="btn" href="#contact">Get in touch</a>
-        </div>
-      </div>
-      <figure class="hero-frame" aria-label="Intro video">
-        <span class="corner a"></span><span class="corner b"></span><span class="corner c"></span><span class="corner d"></span>
-        <video src="/_blob/c07ef8f6cb311d1da7c18179a7fcb03e" autoplay muted loop playsinline aria-label="A short video from Sarvleen"></video>
-        <figcaption class="mono">Intro / 00:60</figcaption>
-      </figure>
-    </div>
-  </section>
+<section class="hero" aria-label="Introduction"><div class="wrap hero-inner"><div>
+<p class="mono eyebrow">Delhi, India / Research &amp; community building</p>
+<h1 aria-label="Sarvleen Walia"><span class="row" aria-hidden="true"><span>Sarvleen</span></span><span class="row" aria-hidden="true"><span>Walia</span></span></h1>
+<p class="intro">I do crazy stuff. Sometimes it works; sometimes it doesn&rsquo;t. When it doesn&rsquo;t, I often learn more than when it does.</p>
+<p class="lead hero-summary">I started Beyond Rote, hosted a Founders Meet, and am building Cornershop. My research interests are neuroscience, machine learning, and soft robotics.</p>
+<div class="actions"><a class="btn solid" href="#about">Explore my work</a><a class="btn" href="mailto:sarvleenwalia@gmail.com">Get in touch</a></div>
+</div><aside class="selected-work" aria-label="Selected work"><p class="mono">Start here</p>
+<a href="#about"><span class="mono">01 / Community</span><h3>Beyond Rote</h3><p>A research community for high schoolers. 2,000+ members, by my count.</p></a>
+<a href="#cornershop"><span class="mono">02 / Event held</span><h3>Founders Meet</h3><p>I hosted the first Cornershop Adda in Delhi on 31 October 2026.</p></a>
+<a href="#building"><span class="mono">03 / In development</span><h3>Cornershop</h3><p>An app to help creative people connect through shared interests.</p></a>
+</aside></div></section>
 
-  <section class="block wrap" id="about" aria-labelledby="about-h">
-    <div class="label reveal"><span class="mono">01 / In my own words</span></div>
-    <div class="reveal">
-      <h2 id="about-h">I started Beyond Rote so students could do real research</h2>
-    </div>
-    <div class="body reveal" style="margin-top:var(--s5)">
-      <p>Beyond Rote started from frustration. I hated rote learning, and I could see how little research reaches school students in India. So I started the thing I wished existed: a research-based community for high schoolers.</p>
-      <p>I led a team of 6+, and every one of us came from a tier 3 city. We partner with professors from leading research institutes and with schools, so students meet real research early. Beyond Rote grew to over 2,000 members.</p>
-      <p>Beyond Rote treats students as early researchers rather than recipients of facts. Sessions follow four commitments, and every session is written up as an institutional memory record so the thinking outlasts the people in the room.</p>
-    </div>
-  </section>
+<section class="block wrap" id="about" aria-labelledby="about-h"><div class="label"><span class="mono">01 / Beyond Rote &middot; Community</span></div>
+<h2 id="about-h">Research shouldn&rsquo;t wait until university.</h2>
+<div class="body section-copy"><p>I hated rote learning and wanted school students in India to have a way into research. I started Beyond Rote: a community where high schoolers can explore questions with other students and professors.</p></div>
+<div class="two section-copy"><div><h3>My contribution</h3><ul><li>Started the community and led a team of 6+ people from tier 3 cities.</li><li>Brought professors and schools into student research sessions.</li><li>Documented sessions so students could revisit the questions and ideas.</li></ul></div><div><h3>Progress so far</h3><ul><li>2,000+ community members.</li><li>5 professors involved and 4+ schools collaborated with.</li><li>Work with a Delhi University college.</li></ul><p class="note">These are my reported community and collaboration counts. Membership is not a measure of active participation or completed research.</p></div></div>
+</section>
 
-  <section class="block wrap" aria-labelledby="stats-h">
-    <div class="label reveal"><span class="mono" id="stats-h">02 / By the numbers</span></div>
-    <div class="stats reveal">
-      <div class="stat"><div class="num"><span data-count="6">0</span>+</div><p>people on the team I led</p></div>
-      <div class="stat"><div class="num"><span data-count="5">0</span></div><p>professors from leading research institutes</p></div>
-      <div class="stat"><div class="num"><span data-count="2000">0</span>+</div><p>students reached</p></div>
-      <div class="stat"><div class="num"><span data-count="4">0</span>+</div><p>schools collaborated with</p></div>
-      <div class="stat"><div class="num"><span data-count="1">0</span></div><p>Delhi University college</p></div>
-    </div>
-    <div class="gdp reveal">
-      <div class="pct">0.64%</div>
-      <p>of GDP is what India spends on research and development, according to the Economic Survey 2025-26. The US, China and Israel sit between 2.5% and 5%. Beyond Rote exists because research barely reaches students here. <a href="https://www.forbesindia.com/" target="_blank" rel="noopener">Source: Forbes India</a></p>
-    </div>
-  </section>
+<section class="block wrap" id="cornershop" aria-labelledby="cornershop-h"><div class="label"><span class="mono">02 / Cornershop Adda &middot; Event held</span></div>
+<h2 id="cornershop-h">I wanted a founder community. So I hosted a meet.</h2>
+<div class="body section-copy"><p>I hosted my first Founders Meet at 17. The idea was simple: bring people working on their own projects together for coffee and conversation.</p><p>The first Cornershop Adda took place on 31 October 2026, from 3&ndash;6 PM, at First Coffee in Connaught Place, New Delhi.</p></div>
+<div class="stats section-copy"><div class="stat"><div class="num">25+</div><p>people attended, by my count</p></div><div class="stat"><div class="num">62</div><p>marked &ldquo;Going&rdquo; on Luma</p></div><div class="stat"><div class="num">17</div><p>my age when I hosted it</p></div></div>
+<p class="note">Luma&rsquo;s public listing shows the event and host. Its &ldquo;Going&rdquo; count is a registration signal, not verified attendance. Checked 3 November 2026.</p>
+<div class="actions section-copy"><a class="btn solid" href="https://luma.com/hhba6fed" target="_blank" rel="noopener">View the public event listing &nearr;</a></div>
+</section>
 
-  <section class="block wrap" id="research" aria-labelledby="research-h">
-    <div class="label reveal"><span class="mono" id="research-h">03 / One question across eight fields</span></div>
-    <p class="question reveal">How do complex systems retain meaningful information despite noise, damage, and uncertainty, and what does this imply about storage, structure, and reconstruction?</p>
-    <div class="tabs" role="tablist" aria-label="Research sessions">
-      <button class="tab" role="tab" id="t0" aria-selected="true" aria-controls="p0">Memory and the brain</button>
-      <button class="tab" role="tab" id="t1" aria-selected="false" aria-controls="p1" tabindex="-1">Supersonic jets</button>
-      <button class="tab" role="tab" id="t2" aria-selected="false" aria-controls="p2" tabindex="-1">Small-world networks</button>
-      <button class="tab" role="tab" id="t3" aria-selected="false" aria-controls="p3" tabindex="-1">Design cognition</button>
-    </div>
-    <div class="skel on" id="skel" aria-hidden="true"><div class="sk" style="width:60%;height:24px"></div><div class="sk" style="width:90%"></div><div class="sk" style="width:70%"></div></div>
-    <div class="panel" role="tabpanel" id="p0" aria-labelledby="t0" hidden>
-      <h3>Memory is rebuilt, not replayed</h3>
-      <p>Localized damage weakens retrieval, not the existence of memories. Loss tracks how much cortex is damaged more than where (the Principle of Mass Action). The holographic model fits this, but no biological mechanism has been found, and modern neural networks explain distributed processing without it.</p>
-      <blockquote><b>Open question</b>If memory is physical but non-localized, what exact physical quantity or transformation stores it?</blockquote>
-    </div>
-    <div class="panel" role="tabpanel" id="p1" aria-labelledby="t1" hidden>
-      <h3>Small geometry changes reshape the whole flow</h3>
-      <p>Shocks form only where flow exceeds the speed of sound. Comparing underexpanded and overexpanded nozzles shows how sensitive these structures are to design. Chevrons and microjets cut low-frequency jet noise, with a trade-off in high frequencies.</p>
-    </div>
-    <div class="panel" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
-      <h3>Six degrees is an average, not a guarantee</h3>
-      <p>Milgram's letter experiment found surprisingly short chains between strangers. Bridging ties keep the network connected, and socioeconomic stratification did not significantly lengthen the average path.</p>
-    </div>
-    <div class="panel" role="tabpanel" id="p3" aria-labelledby="t3" hidden>
-      <h3>Design is adaptive thinking under uncertainty</h3>
-      <p>Design differs from planning and from art. Its goals are often unclear at the start and evolve during the work. Professional design is deliberate, and it is reflective rather than instinctive.</p>
-    </div>
-  </section>
+<section class="block wrap" id="building" aria-labelledby="building-h"><div class="label"><span class="mono">03 / Cornershop &middot; MVP in development</span></div>
+<h2 id="building-h">Find people who share your taste.</h2>
+<div class="body section-copy"><p>I&rsquo;m building Cornershop to help creative people connect through shared interests. I want those connections to become conversations, collaborations, and plans to meet.</p><p>The first MVP is in development. I report 1,250 waitlist signups; that is interest in the idea, not active users or a shipped product.</p><p>Hosting Cornershop Adda is one way I&rsquo;m exploring the offline side of this idea while I build the app.</p></div>
+</section>
 
-  <section class="block wrap" aria-labelledby="proposal-h">
-    <div class="label reveal"><span class="mono" id="proposal-h">04 / Proposed framework</span></div>
-    <div class="two reveal">
-      <div>
-        <h2 style="font-size:clamp(34px,4.6vw,68px)">Why do dopaminergic neurons die, and can we see it coming?</h2>
-        <p class="body" style="margin-top:var(--s4)"><span style="font-family:var(--serif);color:var(--mist);font-size:19px">Parkinson's disease destroys dopaminergic neurons. I study that degeneration and the therapeutic approaches that follow from it, and I explore AI and machine-learning models that predict how stem cells differentiate.</span></p>
-      </div>
-      <div>
-        <h4>Work in progress</h4>
-        <ul>
-          <li>Dopaminergic neuron degeneration and potential therapies</li>
-          <li>Machine-learning models for stem cell differentiation outcomes</li>
-          <li>Literature reviews and data analysis that support ongoing experiments</li>
-          <li>Work with mentors and online research communities</li>
-        </ul>
-      </div>
-    </div>
-    <div class="body reveal" style="margin-top:var(--s5)">
-      <p><strong style="font-weight:600">Machine-Learning Prediction of Stem-Cell Differentiation Fate Using Single-Cell RNA-Seq Data</strong> (with application to Parkinson's dopaminergic neurons). Written under Dr Sujata Mohanty. The field lacks standard, scalable pipelines for finding subtle early-stage signals in public, mixed-quality datasets. This paper proposes one that is accessible, reproducible and computationally light. It describes the planned method and does not report results yet.</p>
-    </div>
-    <div class="two reveal" style="margin-top:var(--s5)">
-      <ul>
-        <li>1. Curate Parkinson's and healthy-control iPSC-derived neuron scRNA-seq data from GEO and ArrayExpress</li>
-        <li>2. Normalize and reduce dimensions</li>
-        <li>3. Cluster cells without labels</li>
-        <li>4. Test differential gene expression</li>
-        <li>5. Map early dysregulation in mitochondrial, lysosomal and proteostasis pathways</li>
-      </ul>
-      <div class="body" style="align-self:end"><p>Goal: early molecular signatures that inform regenerative-therapy strategies and pre-symptomatic interventions.</p></div>
-    </div>
-  </section>
+<section class="block wrap" id="research" aria-labelledby="research-h"><div class="label"><span class="mono">04 / Research &middot; Proposed method</span></div>
+<h2 id="research-h">Can biological data reveal early signs of neuron degeneration?</h2>
+<div class="body section-copy"><p>I wrote a proposed framework, <em>Machine-Learning Prediction of Stem-Cell Differentiation Fate Using Single-Cell RNA-Seq Data</em>, under Dr Sujata Mohanty, with an application to Parkinson&rsquo;s dopaminergic neurons.</p><p>The proposed workflow uses public single-cell RNA-seq datasets: curate the data, normalize it, cluster cells, test differential gene expression, and examine pathways linked to degeneration.</p></div>
+<div class="two section-copy"><div><h3>What exists</h3><p class="lead">A written proposal and planned analysis workflow.</p></div><div><h3>What remains</h3><p class="lead">Run the analysis and evaluate the findings. This is not a validated prediction model, and I am not reporting experimental results.</p></div></div>
+</section>
 
-  <section class="block wrap" id="building" aria-labelledby="building-h">
-    <div class="label reveal"><span class="mono" id="building-h">Currently building / Cornershop</span></div>
-    <div class="reveal">
-      <h2 style="font-size:clamp(40px,6vw,92px)">A corner of the internet for creative people.</h2>
-      <p class="lead" style="margin-top:var(--s4)">Cornershop is an app that lets like-minded creative people connect based on shared interests. I'm developing the first MVP now.</p>
-    </div>
-    <div class="stats reveal" style="margin-top:var(--s5)">
-      <div class="stat"><div class="num"><span data-count="1250">0</span></div><p>people on the waitlist</p></div>
-    </div>
-    <div class="body reveal" style="margin-top:var(--s5)">
-      <p>Current technology was not built for artistic audiences. Most platforms optimise for attention or for work, not for finding the people who share your taste. People need their own corner of the internet, and that is why I'm building Cornershop.</p>
-      <p>The name is inspired by the British band Cornershop.</p>
-    </div>
-  </section>
+<section class="block wrap" id="built" aria-labelledby="built-h"><div class="label"><span class="mono">05 / Other work &amp; lessons</span></div>
+<h2 id="built-h">What I&rsquo;ve explored.</h2>
+<div class="cards section-copy"><article class="card"><span class="tag">Soft robotics / Design framework</span><h3>Manta ray soft robot</h3><p>I developed a design framework for a manta ray soft robot, exploring flexible bodies and wing-like swimming motion. The work presented here is at the framework stage.</p></article><article class="card"><span class="tag">Synthetic biology / Team leadership</span><h3>iGEM team</h3><p>I led an independent high school iGEM team without funding, coordinating the team around a synthetic biology project.</p></article></div>
+<details class="archive section-copy"><summary>Morpheus &mdash; a shelved idea</summary><div class="body"><p>I explored an idea for AI tools that could predict laboratory experiment outcomes. I shelved it after finding another team working on a similar direction. It remains an exploration, rather than a product I shipped.</p></div></details>
+</section>
 
-  <section class="block wrap" id="cornershop" aria-labelledby="cornershop-h">
-    <div class="label reveal"><span class="mono" id="cornershop-h">Cornershop Adda / Founders Meet</span></div>
-    <div class="reveal">
-      <h2 style="font-size:clamp(40px,6vw,92px)">Find your first believer.</h2>
-      <p class="lead" style="margin-top:var(--s4)">Cornershop Adda is the first event in Delhi built for anyone who is building something or curious about starting. I hosted its first Founders Meet at 17, because finding an accessible founder community in Delhi felt harder than it should.</p>
-    </div>
-    <dl class="two reveal" style="margin-top:var(--s5);display:grid;grid-template-columns:1fr 1fr;gap:var(--s4)">
-      <div><h4>What</h4><p class="body" style="font-family:var(--serif);color:var(--mist);font-size:19px">Cornershop Adda, Founders Meet</p></div>
-      <div><h4>When</h4><p class="body" style="font-family:var(--serif);color:var(--mist);font-size:19px">31 October 2026, 3&ndash;6 PM IST</p></div>
-      <div><h4>Where</h4><p class="body" style="font-family:var(--serif);color:var(--mist);font-size:19px">First Coffee, Connaught Place, New Delhi</p></div>
-      <div><h4>Event listing</h4><p class="body" style="font-family:var(--serif);color:var(--mist);font-size:19px"><a href="https://luma.com/hhba6fed" target="_blank" rel="noopener" style="border-bottom:1px solid var(--white)">luma.com/hhba6fed</a></p></div>
-    </dl>
-    <div class="stats reveal" style="margin-top:var(--s5)">
-      <div class="stat"><div class="num"><span data-count="25">0</span><em>+</em></div><p>people showed up</p><small style="font-family:var(--mono);font-size:12px;opacity:.8;text-transform:uppercase;letter-spacing:.04em">Organiser-reported turnout</small></div>
-      <div class="stat"><div class="num"><span data-count="62">0</span></div><p>public Luma listing views</p><small style="font-family:var(--mono);font-size:12px;opacity:.8;text-transform:uppercase;letter-spacing:.04em">Observed during preparation</small></div><div class="stat"><div class="num"><span data-count="2000" data-from="200">200</span></div><p>founders we are building toward</p><small style="font-family:var(--mono);font-size:12px;opacity:.8;text-transform:uppercase;letter-spacing:.04em">A goal, not a count</small></div>
-      
-    </div>
-    <div class="body reveal" style="margin-top:var(--s5)">
-      <p>There is no reality in this world where you don&rsquo;t win. That is the opening line of Cornershop Adda, an encouragement rather than an attendee testimonial.</p>
-      <p>Cornershop is the bigger idea: help curious people find others who share their interests, then turn that connection into a real plan to meet. The app is at the MVP stage. The first Adda was a beginning.</p>
-    </div>
-  </section>
+<section class="block wrap" aria-labelledby="can-h"><div class="label"><span class="mono">06 / What I can contribute</span></div><h2 id="can-h">Research, organizing, and getting started.</h2>
+<div class="two section-copy"><div><h3>Research &amp; communication</h3><ul><li>Literature reviews and clear research writing, drawing on my neuron-degeneration proposal.</li><li>Planning biological-data analysis workflows and identifying what needs to be tested.</li></ul></div><div><h3>Community &amp; project leadership</h3><ul><li>Bringing students, professors, and schools together through Beyond Rote.</li><li>Organizing an in-person event, as I did with Cornershop Adda.</li><li>Coordinating teams and taking early ideas into concrete project plans.</li></ul></div></div>
+</section>
 
-  <section class="block wrap" id="built" aria-labelledby="built-h">
-    <div class="label reveal"><span class="mono" id="built-h">05 / What I've built</span></div>
-    <div class="cards">
-      <article class="card reveal">
-        <div>
-          <span class="tag">Soft robotics</span>
-          <h3>Manta ray soft robot</h3>
-          <p>I built the framework for a manta ray soft robot. Soft robots swap rigid joints for flexible bodies, and a manta ray is a good model because it swims by sending a wave along its wings.</p>
-        </div>
-        <svg class="draw" viewBox="0 0 400 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30 C 60 0, 100 40, 160 20 S 260 0, 320 24 S 380 10, 400 18"/></svg>
-      </article>
-      <article class="card reveal">
-        <div>
-          <span class="tag">Synthetic biology</span>
-          <h3>iGEM team lead</h3>
-          <p>I led an iGEM team, the international synthetic biology competition. We had no funding, and we were the only independent high school team in the country.</p>
-        </div>
-        <svg class="draw" viewBox="0 0 400 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20 C 50 40, 90 0, 140 20 S 230 40, 290 18 S 360 4, 400 22"/></svg>
-      </article>
-    </div>
-  </section>
-
-  <section class="block wrap" aria-labelledby="morpheus-h">
-    <div class="label reveal"><span class="mono">06 / Shelved</span></div>
-    <div class="reveal">
-      <h2 id="morpheus-h" style="font-size:clamp(40px,5vw,76px)">Morpheus, AI infrastructure for predictive science</h2>
-      <p class="lead" style="margin-top:var(--s4)">Scientific experimentation is slow, expensive and unpredictable. Morpheus was my attempt to forecast an experiment's outcome before anyone runs it.</p>
-    </div>
-    <div class="two reveal" style="margin-top:var(--s5)">
-      <div>
-        <h4>The problem</h4>
-        <ul>
-          <li>Researchers rely on trial-and-error workflows</li>
-          <li>Outcomes are hard to forecast before lab work starts</li>
-          <li>No unified predictive engine exists for laboratory experiments</li>
-        </ul>
-      </div>
-      <div>
-        <h4>The solution</h4>
-        <ul>
-          <li>A predictive AI engine that models experimental variables and forecasts likely outcomes before physical execution</li>
-          <li>Works across enzyme-based and non-enzyme systems</li>
-          <li>Goal: fewer failed experiments and faster discovery cycles</li>
-        </ul>
-      </div>
-    </div>
-    <div class="two reveal" style="margin-top:var(--s5)">
-      <div>
-        <h4>Business model</h4>
-        <ul>
-          <li>Subscriptions for labs and research institutions</li>
-          <li>Enterprise licensing for pharma and biotech firms</li>
-          <li>Later, API access for research software platforms</li>
-        </ul>
-      </div>
-      <div>
-        <h4>Vision</h4>
-        <ul>
-          <li>Become the AI operating layer for scientific experimentation</li>
-          <li>Move research from trial and error to predictive engineering</li>
-        </ul>
-      </div>
-    </div>
-    <p class="lead reveal" style="margin-top:var(--s5);font-style:italic">A team in China built it first, so I shelved it. My team slide read: "Focused on AI-driven research infrastructure and making research accessible for all." That is still what I want to work on.</p>
-  </section>
-
-  <section class="block wrap" aria-labelledby="can-h">
-    <div class="label reveal"><span class="mono" id="can-h">07 / What I can do</span></div>
-    <div class="two reveal">
-      <div>
-        <h4>Research &amp; scientific communication</h4>
-        <ul>
-          <li>Review literature and turn complex findings into clear research questions</li>
-          <li>Analyze experimental data and communicate results</li>
-          <li>Connect ideas across neuroscience, biology, and engineering</li>
-        </ul>
-      </div>
-      <div>
-        <h4>Machine learning &amp; biological data</h4>
-        <ul>
-          <li>Design single-cell RNA-seq workflows for normalization, clustering, and differential expression</li>
-          <li>Extract features from biological datasets for predictive modeling</li>
-          <li>Explore machine learning approaches to neurodegeneration</li>
-        </ul>
-      </div>
-      <div>
-        <h4>Community building &amp; leadership</h4>
-        <ul>
-          <li>Build student research communities and organize founder meetups</li>
-          <li>Bring students, professors, and schools together around research</li>
-          <li>Lead teams and coordinate projects with limited resources</li>
-        </ul>
-      </div>
-      <div>
-        <h4>Early-stage ideas &amp; prototypes</h4>
-        <ul>
-          <li>Translate research ideas into project frameworks</li>
-          <li>Develop concepts across soft robotics and scientific tools</li>
-          <li>Research a problem, define a direction, and organize the next steps</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="contact wrap" id="contact" aria-labelledby="contact-h">
-    <div class="label reveal"><span class="mono" id="contact-h">08 / Contact</span></div>
-    <p class="big reveal">Let's build the next thing.</p>
-    <div class="actions reveal">
-      <a class="btn" href="mailto:sarvleenwalia@gmail.com">sarvleenwalia@gmail.com</a>
-      <button class="btn solid magnet" id="copyBtn" type="button"><span class="spin" aria-hidden="true"></span><span id="copyLabel">Copy contact</span></button>
-      <a class="btn" href="#top">Back to the top</a>
-    </div>
-  </section>
+<section class="contact wrap" id="contact" aria-labelledby="contact-h"><div class="label"><span class="mono" id="contact-h">07 / Contact</span></div><p class="big">Let&rsquo;s build the next thing.</p><div class="actions"><a class="btn solid" href="mailto:sarvleenwalia@gmail.com">sarvleenwalia@gmail.com</a><button class="btn" id="copyBtn" type="button"><span id="copyLabel" aria-live="polite">Copy email</span></button><a class="btn" href="#top">Back to top</a></div></section>
 </main>
 
 <footer class="wrap">
@@ -532,53 +356,6 @@
   addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
   requestAnimationFrame(frame);
 
-  // Research tabs with a short loading state
-  const tabs = [...document.querySelectorAll('[role="tab"]')];
-  const skel = document.getElementById('skel');
-  function selectTab(i, focus) {
-    tabs.forEach((t, j) => {
-      const on = i === j;
-      t.setAttribute('aria-selected', on);
-      t.tabIndex = on ? 0 : -1;
-      document.getElementById('p' + j).hidden = true;
-    });
-    skel.classList.add('on');
-    setTimeout(() => {
-      skel.classList.remove('on');
-      document.getElementById('p' + i).hidden = false;
-    }, 380);
-    if (focus) tabs[i].focus();
-  }
-  tabs.forEach((t, i) => {
-    t.addEventListener('click', () => selectTab(i));
-    t.addEventListener('keydown', e => {
-      if (e.key === 'ArrowRight') { e.preventDefault(); selectTab((i + 1) % tabs.length, true); }
-      if (e.key === 'ArrowLeft') { e.preventDefault(); selectTab((i - 1 + tabs.length) % tabs.length, true); }
-    });
-  });
-  selectTab(0);
-
-  // Reveals and count-up
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      e.target.classList.add('in');
-      e.target.querySelectorAll('[data-count]').forEach(countUp);
-      io.unobserve(e.target);
-    });
-  }, { threshold: .15 });
-  document.querySelectorAll('.reveal, .card').forEach(el => io.observe(el));
-  function countUp(el) {
-    const target = +el.dataset.count, from = +(el.dataset.from || 0), start = performance.now();
-    const step = now => {
-      const p = Math.min((now - start) / 1400, 1);
-      el.textContent = Math.round(from + (target - from) * (1 - Math.pow(1 - p, 3)));
-      if (p < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  }
-  document.querySelectorAll('.gdp .pct').forEach(el => io.observe(el));
-
   // Active nav
   const links = [...document.querySelectorAll('nav a')];
   const targets = links.map(a => document.querySelector(a.getAttribute('href')));
@@ -597,21 +374,12 @@
     el.addEventListener('pointerleave', () => { el.style.transform = ''; });
   });
 
-  // CV request and copy contact, each with a loading state
-  function withLoading(btn, label, action, done) {
-    btn.classList.add('loading');
-    setTimeout(async () => {
-      try { await action(); label.textContent = done; }
-      catch (err) { label.textContent = 'Unavailable right now'; }
-      btn.classList.remove('loading');
-    }, 600);
-  }
   const copyBtn = document.getElementById('copyBtn');
-  const copyLabel = document.getElementById('copyLabel');
-  copyBtn.addEventListener('click', () => withLoading(copyBtn, copyLabel, () => navigator.clipboard.writeText('sarvleenwalia@gmail.com'), 'Copied'));
-
-  // Card line-drawings draw in when their card is on screen
-  document.querySelectorAll('.card').forEach(c => io.observe(c));
+  copyBtn.addEventListener('click', async () => {
+    const label = document.getElementById('copyLabel');
+    try { await navigator.clipboard.writeText('sarvleenwalia@gmail.com'); label.textContent = 'Email copied'; }
+    catch { label.textContent = 'Use the email link'; }
+  });
 </script>
 </body>
 </html>
