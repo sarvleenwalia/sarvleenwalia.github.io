@@ -151,6 +151,9 @@
     .reveal { opacity: 1; transform: none; }
     .hero h1 .row > span { transform: none; }
   }
+  .project-links { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: var(--s2); font-family: var(--mono); font-size: 12px; }
+  .project-links a { padding: 4px 0; border-bottom: 1px solid var(--line); }
+  .project-links a:hover, .project-links a:focus-visible { border-color: currentColor; }
 </style>
 </head>
 <body>
@@ -186,6 +189,10 @@
         <div class="actions">
           <a class="btn solid magnet" href="#built">See the work</a>
           <a class="btn" href="#contact">Get in touch</a>
+        </div>
+        <div class="project-links" aria-label="Project sites">
+          <a href="./beyond-rote.html">Beyond Rote <span aria-hidden="true">↗</span></a>
+          <a href="./Cornershop%20Founders%20Adda%20_%20A%20Founders%20Meet%20in%20Delhi.html">Cornershop Founders Adda <span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </div>
