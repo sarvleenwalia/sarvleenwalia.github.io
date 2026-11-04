@@ -63,7 +63,7 @@
   /* Hero */
   .hero { position: relative; min-height: 100svh; display: grid; align-items: center; padding: 120px 0 var(--s6); }
   .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .55; mix-blend-mode: screen; pointer-events: none; }
-  .hero-inner { position: relative; display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--s5); align-items: center; }
+  .hero-inner { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s5); align-items: center; }
   .hero h1 { font-family: var(--grotesk); font-stretch: 125%; font-weight: 800; font-size: clamp(56px, 11vw, 168px); line-height: .86; letter-spacing: -.05em; }
   .hero h1 .row { display: block; overflow: hidden; }
   .hero h1 .row > span { display: inline-block; transform: translateY(105%); transition: transform 1.2s var(--ease); }
@@ -73,14 +73,6 @@
   .tags { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s3); }
   .tags span { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
   .hero .actions { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s4); }
-  .hero-frame { position: relative; aspect-ratio: 1; border: 1px solid var(--line); overflow: hidden; }
-  .hero-frame video { width: 100%; height: 100%; object-fit: cover; }
-  .hero-frame .mono { position: absolute; left: var(--s2); bottom: var(--s2); background: var(--blue); padding: 4px 8px; }
-  .hero-frame .corner { position: absolute; width: 18px; height: 18px; border: 1px solid var(--white); }
-  .hero-frame .corner.a { top: 8px; left: 8px; border-right: 0; border-bottom: 0; }
-  .hero-frame .corner.b { top: 8px; right: 8px; border-left: 0; border-bottom: 0; }
-  .hero-frame .corner.c { bottom: 8px; left: 8px; border-right: 0; border-top: 0; }
-  .hero-frame .corner.d { bottom: 8px; right: 8px; border-left: 0; border-top: 0; }
 
   /* Sections */
   section.block { padding: var(--s7) 0; border-top: 1px solid var(--line); position: relative; }
@@ -196,11 +188,6 @@
           <a class="btn" href="#contact">Get in touch</a>
         </div>
       </div>
-      <figure class="hero-frame" aria-label="Intro video">
-        <span class="corner a"></span><span class="corner b"></span><span class="corner c"></span><span class="corner d"></span>
-        <video src="/_blob/c07ef8f6cb311d1da7c18179a7fcb03e" autoplay muted loop playsinline aria-label="A short video from Sarvleen"></video>
-        <figcaption class="mono">Intro / 00:60</figcaption>
-      </figure>
     </div>
   </section>
 
@@ -346,7 +333,8 @@
         <div>
           <span class="tag">Synthetic biology</span>
           <h3>iGEM team lead</h3>
-          <p>I led an iGEM team, the international synthetic biology competition. We had no funding, and we were the only independent high school team in the country.</p>
+          <p>I recruited five standout high school students from across India and led our independent iGEM team. We proposed engineering a synthetic gene circuit to report early α-synuclein misfolding in a model organism, then using machine learning to detect subtle changes in microscopy images.</p>
+          <p>Every IIT Delhi professor we spoke with expressed interest in working with us. Age restrictions prevented our team from pursuing the project.</p>
         </div>
         <svg class="draw" viewBox="0 0 400 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20 C 50 40, 90 0, 140 20 S 230 40, 290 18 S 360 4, 400 22"/></svg>
       </article>
@@ -429,6 +417,7 @@
         <ul>
           <li>Translate research ideas into project frameworks</li>
           <li>Develop concepts across soft robotics and scientific tools</li>
+          <li>Build parametric CAD models and assemblies in Python with build123d, including mirrored geometry and STEP and STL exports</li>
           <li>Research a problem, define a direction, and organize the next steps</li>
         </ul>
       </div>
