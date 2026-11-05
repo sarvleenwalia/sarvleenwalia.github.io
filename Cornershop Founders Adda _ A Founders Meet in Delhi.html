@@ -218,6 +218,11 @@
     .hero h1 .row > span { transform: none; }
     .loader { display: none; }
   }
+  @media (max-width: 700px) {
+    .timeline { grid-template-columns: minmax(0, 1fr); gap: var(--s3); }
+    .timeline li { min-width: 0; border-right: 0; border-bottom: 1px solid var(--rule); padding-right: 0; }
+    .timeline li:last-child { border-bottom: 0; }
+  }
 </style>
 </head>
 <body>
@@ -267,7 +272,6 @@
         <div class="field-wrap" id="fieldWrap">
           <canvas id="field" aria-hidden="true"></canvas>
         </div>
-        <p class="field-cap mono">Move across the field. The artwork is the flower from the Cornershop identity.</p>
       </div>
     </div>
   </section>
@@ -278,10 +282,10 @@
     
     <div class="label reveal"><span class="mono">00</span><span class="mono" id="about-h">About</span></div>
     <div class="split reveal">
-      <h2>The first event in Delhi built for anyone building or curious about building.</h2>
+      <h2>Find your first believer.</h2>
       <div class="body">
         <p>Cornershop Founders Adda is a Founders Meet in New Delhi for people building things and people curious about starting. The first one ran on 31 October 2026 at First Coffee, Connaught Place.</p>
-        <p><strong>Cornershop is the product behind it.</strong> An app that connects like-minded creative people based on shared interests. Current technology was not built for artistic audiences, and people need their own corner of the internet. The MVP is in development.</p>
+        <p>Cornershop is an app in development that connects creative people through shared interests.</p>
       </div>
     </div>
   </section>
@@ -294,23 +298,21 @@
         <button class="tab2" role="tab" id="x1" aria-selected="false" aria-controls="xp1" tabindex="-1">Meet</button>
         <button class="tab2" role="tab" id="x2" aria-selected="false" aria-controls="xp2" tabindex="-1">Build</button>
       </div>
-      <div class="xpanel" id="xp0" role="tabpanel" aria-labelledby="x0"><h3>Connect people by shared interests.</h3><p>Cornershop is an app that lets like-minded creative people connect based on shared interests. Current technology was not built for artistic audiences, and people need their own corner of the internet.</p></div>
-      <div class="xpanel" id="xp1" role="tabpanel" aria-labelledby="x1" hidden><h3>Meet in the room.</h3><p>Cornershop Founders Adda is the in-person side: a Founders Meet in New Delhi for people building things and people curious about starting.</p></div>
-      <div class="xpanel" id="xp2" role="tabpanel" aria-labelledby="x2" hidden><h3>Build the MVP.</h3><p>The first MVP is in development, and 1,250 people are on the waitlist.</p></div>
+      <div class="xpanel" id="xp0" role="tabpanel" aria-labelledby="x0"><h3>Start with a conversation.</h3><p>The first Adda brought people working on their own projects into the same room at First Coffee, Connaught Place.</p></div>
+      <div class="xpanel" id="xp1" role="tabpanel" aria-labelledby="x1" hidden><h3>Meet in person.</h3><p>I hosted the first Founders Meet in Delhi on 31 October 2026. More than 25 people attended, according to my count as organiser.</p></div>
+      <div class="xpanel" id="xp2" role="tabpanel" aria-labelledby="x2" hidden><h3>Keep building.</h3><p>The first meetup is complete. The Cornershop MVP is still in development.</p></div>
     </div>
     <ol class="timeline reveal">
       <li><button class="node" aria-expanded="false" aria-controls="tl0"><span class="mono">31 Oct 2026</span><span>First Founders Meet</span></button><p id="tl0" hidden>Held at First Coffee, Connaught Place, New Delhi. Turnout 25+, organiser-reported.</p></li>
-      <li><button class="node" aria-expanded="false" aria-controls="tl1"><span class="mono">Now</span><span>MVP in development</span></button><p id="tl1" hidden>1,250 people on the Cornershop waitlist.</p></li>
-      <li><button class="node" aria-expanded="false" aria-controls="tl2"><span class="mono">Goal</span><span>Connect creative people by shared interests</span></button><p id="tl2" hidden>Right now, the waitlist for the app is at 1,250.</p></li>
+      <li><button class="node" aria-expanded="false" aria-controls="tl1"><span class="mono">Now</span><span>MVP in development</span></button><p id="tl1" hidden>The app is in development; this is work in progress.</p></li>
+      <li><button class="node" aria-expanded="false" aria-controls="tl2"><span class="mono">Next</span><span>200 founders at future Addas</span></button><p id="tl2" hidden>A future attendance goal, not a count from the first event.</p></li>
     </ol>
   </section>
 
   <section class="block wrap" id="numbers" aria-labelledby="numbers-h">
     <div class="label reveal"><span class="mono">01</span><span class="mono" id="numbers-h">Numbers</span></div>
-    <div class="nums reveal">
-      <div class="num"><div class="n"><span data-count="25">0</span>+</div><p>people at the first Founders Meet</p><small>Organiser-reported turnout</small></div>
-      <div class="num"><div class="n"><span data-count="1250">0</span></div><p>people on the Cornershop waitlist</p><small>App, in MVP development</small></div>
-      <div class="num"><div class="n"><span data-count="2000" data-from="200">200</span></div><p>founders we are building toward</p><small>A goal, not a count</small></div>
+    <div class="nums reveal" style="grid-template-columns:1fr">
+      <div class="num"><div class="n">25+</div><p>attended (organiser-reported)</p></div>
     </div>
   </section>
 
@@ -342,8 +344,6 @@
   <section class="block wrap note" id="founder" aria-labelledby="note-h">
     <div class="label reveal"><span class="mono">04</span><span class="mono" id="note-h">Founder</span></div>
     <div class="reveal">
-      <blockquote>&ldquo;I have always dreamt outside my capacity.&rdquo;</blockquote>
-      <p class="hindi">मैंने हमेशा अपनी औकात से बाहर सपने देखे हैं।</p>
       <div class="body" style="margin-top:var(--s5)">
         <p>I&rsquo;m 17. Finding an accessible founder community in Delhi felt harder than it should, so I hosted the first meetup. Cornershop Founders Adda is the room I wanted to exist, and the app is the bigger idea behind it.</p>
       </div>
@@ -351,10 +351,8 @@
     </div>
   </section>
 
-  <section class="wrap" aria-labelledby="closing-h" style="padding:var(--s7) 0">
+  <section class="wrap" aria-label="Event links" style="padding:var(--s7) 0">
     <div class="closing reveal">
-      <h2 id="closing-h">Find your first believer.</h2>
-      <p>And be someone else&rsquo;s.</p>
       <div class="actions">
         <a class="btn" href="https://luma.com/hhba6fed" target="_blank" rel="noopener">Event listing</a>
         <button class="btn alt" id="shareBtn" type="button"><span class="spin" aria-hidden="true"></span><span id="shareLabel">Copy link</span></button>
@@ -370,7 +368,7 @@
   </div>
   <details>
     <summary>Credits &amp; details</summary>
-    <p>Opening photograph by Calvin Hong. Conversation photograph by Neelakshi Kumari. Other photos and clips supplied by Cornershop. The 25+ turnout is reported by the organiser. The 62 public Luma listing views were observed during preparation and measure something different from turnout. The 200 to 2000 figure is a goal, not a count.</p>
+    <p>Opening photograph by Calvin Hong. Conversation photograph by Neelakshi Kumari. Other photos and clips supplied by Cornershop. Attendance: 25+ people, organiser-reported. The 200-founder target refers to future Addas and is not attendance at the first event.</p>
   </details>
 </footer>
 
